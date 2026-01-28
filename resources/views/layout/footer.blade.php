@@ -31,7 +31,7 @@
 
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script src="{{ asset('asset/js/setting-demo.js') }}"></script>
-<script src="{{ asset('asset/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('asset/js/demo.js') }}"></script> --}}
 <script>
     $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",

@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function prediksis()
+    {
+        return $this->hasMany(Prediksi::class, 'id_user', 'id');
+    }
 }

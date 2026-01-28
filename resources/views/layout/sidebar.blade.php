@@ -37,6 +37,14 @@
                      </a>
 
                  </li>
+                 <li class="nav-item {{ request()->routeIs('history') ? 'active' : '' }}">
+                     <a href="{{ route('history') }}">
+                         <i class="fas "></i>
+                         <p>History</p>
+                         {{-- <span class="caret"></span> --}}
+                     </a>
+
+                 </li>
 
 
 
