@@ -84,7 +84,7 @@
                                             {{ number_format($hasil_prediksi['estimasi_pembayaran'], 0, ',', '.') }}</h1>
                                         <p class="mb-0 mt-2 text-white text-opacity-75">
                                             Dengan Harga Petani (Rp
-                                            {{ number_format($input_data['Harga_Beli_Petani'], 0, ',', '.') }}/Kg)
+                                            {{ number_format($input_data['Harga_Beli_Petani']) }}/Kg)
                                         </p>
                                     </div>
                                     <div class="col-md-5 text-md-end mt-4 mt-md-0">
@@ -178,9 +178,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 text-lg-end">
-                        <button class="btn btn-outline-primary rounded-pill px-4 me-2">
-                            <i class="bi bi-download me-2"></i>PDF
-                        </button>
+
                         <button class="btn btn-primary rounded-pill px-4 shadow-sm btn-pulse">
                             <i class="bi bi-arrow-clockwise me-2"></i>Prediksi Baru
                         </button>

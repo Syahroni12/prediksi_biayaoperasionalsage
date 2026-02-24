@@ -60,6 +60,8 @@
         fillColor: "rgba(255, 165, 52, .14)",
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

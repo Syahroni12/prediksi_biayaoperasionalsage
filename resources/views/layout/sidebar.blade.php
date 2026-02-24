@@ -3,8 +3,8 @@
          <!-- Logo Header -->
          <div class="logo-header" data-background-color="dark">
              <a href="#" class="logo">
-                 <img src="{{ asset('asset/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                     height="20" />
+                 <div class="text-white">PT Sage Maslahat</div>
+
              </a>
              <div class="nav-toggle">
                  <button class="btn btn-toggle toggle-sidebar">
@@ -39,8 +39,9 @@
                  </li>
                  <li class="nav-item {{ request()->routeIs('history') ? 'active' : '' }}">
                      <a href="{{ route('history') }}">
-                         <i class="fas "></i>
-                         <p>History</p>
+                         {{-- icon jam --}}
+                         <i class="fas fa-clock"></i>
+                         <p>History Prediksi</p>
                          {{-- <span class="caret"></span> --}}
                      </a>
 

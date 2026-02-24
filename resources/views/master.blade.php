@@ -52,7 +52,7 @@
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Hizrian</span>
+                                        <span class="fw-bold">{{ auth()->user()->name }}</span>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -64,9 +64,10 @@
                                                         class="avatar-img rounded" /> --}}
                                                 </div>
                                                 <div class="u-text">
-                                                    <h4>Hizrian</h4>
-                                                    <p class="text-muted">hello@example.com</p>
-                                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
+                                                    <h4>{{ auth()->user()->name }}</h4>
+                                                    <p class="text-muted">{{ auth()->user()->email }}</p>
+                                                    <a href="{{ route('profile') }}"
+                                                        class="btn btn-xs btn-secondary btn-sm">View
                                                         Profile</a>
                                                 </div>
                                             </div>
@@ -173,12 +174,12 @@
     <script>
         function logout() {
             Swal.fire({
-                title: 'Are you sure you want to logout?',
+                title: 'Apakah anda ingin keluar?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, logout!'
+                confirmButtonText: 'Ya, keluar!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "{{ route('logout') }}";

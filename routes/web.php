@@ -27,4 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/history', [App\Http\Controllers\HomeController::class, 'history'])->name('history');
     Route::get('/detail_history/{id}', [App\Http\Controllers\PrediksiController::class, 'detailHistory'])->name('detail_history');
     Route::post('/export_history', [App\Http\Controllers\PrediksiController::class, 'export'])->name('export_history');
+    Route::get('/hapus_prediksi/{id}', [App\Http\Controllers\PrediksiController::class, 'hapus_prediksi'])->name('hapus_prediksi');
+    // halaman profile
+    Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+    Route::post('/profile_update', [App\Http\Controllers\HomeController::class, 'update_profile'])->name('profile.update');
 });

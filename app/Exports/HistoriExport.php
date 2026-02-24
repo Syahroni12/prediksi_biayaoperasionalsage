@@ -55,7 +55,7 @@ class HistoriExport implements
             "Desa",
             "Rata Rata Suhu (°C)",
             "Rata Rata Curah Hujan (mm)",
-            "Estimasi Tanggal Panen",
+            "Tanggal Tanam",
             'Luas Lahan (Ha)',
             'Estimasi Hasil Panen (Kg)',
             'Harga Beli Petani',
@@ -63,8 +63,8 @@ class HistoriExport implements
             "Varietas",
             'Estimasi Umur Tanam (Hari)',
 
-            'Tanggal Tanam',
-            'Tanggal Export'
+            'Estimasi Tanggal Panen',
+            // 'Tanggal Export'
         ];
     }
 
@@ -78,16 +78,16 @@ class HistoriExport implements
             $row->desa,
             $row->mean_suhu,
             $row->mean_hujan,
-            $row->tanggal_panen,
+            $row->tanggal_tanam,
             $row->luas_lahan,
 
             $row->estimasi_panen,
             $row->harga_beli,
-            $row->estimasi_pembayaran,
+            $row->estimasi_biaya,
             $row->varietas->varietas ?? '-',
             $row->umur_tanaman,
-            $row->tanggal_tanam,
-            now()->format('d-m-Y'),
+            $row->tanggal_panen,
+            // now()->format('d-m-Y'),
         ];
     }
 

@@ -1,6 +1,55 @@
 @extends('master')
 
 @section('main')
+    <style>
+        .table-hover tbody tr:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            z-index: 1;
+        }
+
+        .table-hover tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        /* Pagination Styling */
+        .page-link {
+            border-radius: 50% !important;
+            margin: 0 3px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .page-item.active .page-link {
+            background-color: #11998e;
+            color: white;
+            box-shadow: 0 3px 10px rgba(17, 153, 142, 0.3);
+        }
+
+        /* Animation */
+        .fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
     <div class="container-fluid py-4" style="background-color: #f8f9fa; min-height: 100vh;">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-11">
@@ -92,8 +141,7 @@
                                             {{-- Estimasi Panen --}}
                                             <td>
                                                 <div class="d-flex flex-column">
-                                                    <span
-                                                        class="fw-bold text-dark">{{ number_format($item->estimasi_panen, 0, ',', '.') }}
+                                                    <span class="fw-bold text-dark">{{ $item->estimasi_panen }}
                                                         Kg</span>
                                                     <small class="text-muted text-nowrap">
                                                         <i class="bi bi-calendar-check me-1"></i>
@@ -106,7 +154,7 @@
                                             {{-- Biaya --}}
                                             <td>
                                                 <span class="fw-bold text-success">
-                                                    Rp {{ number_format($item->estimasi_biaya, 0, ',', '.') }}
+                                                    Rp {{ $item->estimasi_biaya }}
                                                 </span>
                                             </td>
 
@@ -127,9 +175,9 @@
                                                         </button>
                                                     </form> --}}
                                                     <a href="#"
-                                                        class="btn btn-sm btn-light text-danger shadow-sm rounded-pill"
-                                                        title="Hapus">
-                                                        <i class="bi bi-trash"></i>
+                                                        class="btn btn-sm btn-danger text-light shadow-sm rounded-pill"
+                                                        title="Hapus" onclick="hapus({{ $item->id }})">
+                                                        hapus
                                                     </a>
                                                 </div>
                                             </td>
@@ -158,14 +206,7 @@
                     </div>
                 </div>
 
-                {{-- Pagination --}}
-                @if ($histori->hasPages())
-                    <div class="card-footer bg-transparent border-0 py-3 mt-2">
-                        <div class="d-flex justify-content-end">
-                            {{ $histori->links() }}
-                        </div>
-                    </div>
-                @endif
+
             </div>
         </div>
     </div>
@@ -217,54 +258,22 @@
         </div>
     </div>
 
+    <script>
+        function hapus(id) {
+            Swal.fire({
+                title: 'Yakin ingin menghapus data?',
+                text: 'Data yang dihapus tidak dapat dikembalikan.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/hapus_prediksi/" + id;
+                }
+            });
+        }
+    </script>
+
     {{-- Custom Style --}}
-    <style>
-        .table-hover tbody tr:hover {
-            background-color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            z-index: 1;
-        }
-
-        .table-hover tbody tr {
-            transition: all 0.2s ease;
-        }
-
-        /* Pagination Styling */
-        .page-link {
-            border-radius: 50% !important;
-            margin: 0 3px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            color: #6c757d;
-            font-weight: 500;
-        }
-
-        .page-item.active .page-link {
-            background-color: #11998e;
-            color: white;
-            box-shadow: 0 3px 10px rgba(17, 153, 142, 0.3);
-        }
-
-        /* Animation */
-        .fade-in-up {
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
 @endsection

@@ -65,7 +65,8 @@ class PrediksiController extends Controller
         try {
             $response = Http::timeout(60)
                 ->acceptJson()
-                ->post('http://127.0.0.1:8001/prediksi', $payload);
+                // ->post('http://127.0.0.1:8001/prediksi', $payload);
+                ->post('https://apibiaya.musyah.my.id/prediksi', $payload);
 
             if (!$response->successful()) {
                 return response()->json([
@@ -75,7 +76,7 @@ class PrediksiController extends Controller
                 ], $response->status());
             }
             session([
-                'prediksi_result' => $response->json(),
+                // 'prediksi_result' => $response->json(),
                 'prediksi_input'  => $payload
             ]);
             // dump($_SESSION['prediksi_result']);
@@ -92,7 +93,7 @@ class PrediksiController extends Controller
                 'varietas_id'            => $varietas_id,
                 'tanggal_panen'      => $response->json()['estimasi_tanggal_panen'],
                 'umur_tanaman'      => $response->json()['umur_tanam'],
-                "estimasi_biaya" => $response->json()['estimasi_pembayaran'],
+                "estimasi_biaya" =>  $request->Harga_Beli_Petani * $response->json()['prediksi_panen_kg'],
                 "mean_suhu" => $response->json()['suhu'],
                 "mean_hujan" => $response->json()['curah_hujan'],
                 'id_user' => auth()->user()->id,
@@ -103,8 +104,22 @@ class PrediksiController extends Controller
                 'created_at'             => now(),
                 'updated_at'             => now(),
             ]);
+
+            session([
+                'prediksi_result' => [
+                    'estimasi_tanggal_panen' => $response->json()['estimasi_tanggal_panen'],
+                    'umur_tanam' => $response->json()['umur_tanam'],
+                    'prediksi_panen_kg' => $response->json()['prediksi_panen_kg'],
+                    'suhu' => $response->json()['suhu'],
+                    'curah_hujan' => $response->json()['curah_hujan'],
+                    'estimasi_pembayaran' => $request->Harga_Beli_Petani * $response->json()['prediksi_panen_kg']
+
+                ],
+                'prediksi_input'  => $payload
+            ]);
             Alert::success('Berhasil', 'Prediksi berhasil dilakukan');
-            // dump(session('prediksi_input'));
+            // dump($response->json()['prediksi_panen_kg']);
+            // dump($request->Harga_Beli_Petani * $response->json()['prediksi_panen_kg']);
             return redirect()->route('hasil_prediksi');
 
             /* ===============================
@@ -150,5 +165,15 @@ class PrediksiController extends Controller
             ),
             $fileName
         );
+    }
+
+
+    public function hapus_prediksi($id)
+    {
+        $data = Prediksi::find($id);
+        $data->delete();
+
+        Alert::success('Berhasil', 'Data prediksi berhasil dihapus');
+        return redirect()->route('history');
     }
 }

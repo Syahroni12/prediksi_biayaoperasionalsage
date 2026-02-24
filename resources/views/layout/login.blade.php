@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login PT. SAGE MASHLAHAT</title>
+    <title>Si Akad</title>
     <link rel="icon" href="{{ asset('asset/image.png') }}" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -28,10 +28,10 @@
             <div class="text-center mb-8">
                 <div
                     class="inline-flex items-center justify-center mb-3 shadow-lg transform hover:rotate-12 transition-transform duration-300">
-                    <img src="{{ asset('asset/image.png') }}" alt="PT. SAGE MASHLAHAT Logo" class="h-20 w-auto">
+                    {{-- <img src="{{ asset('asset/image.png') }}" alt="PT. SAGE MASHLAHAT Logo" class="h-20 w-auto"> --}}
                 </div>
                 <h2 class="text-2xl font-bold text-gray-800">Selamat Datang</h2>
-                <p class="text-sm text-gray-500 mt-1">PT. SAGE MASHLAHAT INDONESIA</p>
+                <p class="text-sm text-gray-500 mt-1">Si Akad</p>
             </div>
 
             <form action="{{ route('loginaction') }}" method="POST" class="space-y-6">
